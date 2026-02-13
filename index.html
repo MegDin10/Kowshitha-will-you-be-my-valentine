@@ -15,17 +15,19 @@
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       font-family: Arial, sans-serif;
       overflow: hidden;
+      transition: background 1.2s ease;
     }
 
     .card {
       background: white;
-      width: 320px;
-      height: 260px;
+      width: 360px;
+      height: 420px;
       padding: 30px;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.15);
       text-align: center;
       position: relative;
+      overflow: hidden;
     }
 
     h1 {
@@ -47,15 +49,15 @@
     #yesBtn {
       background-color: #38b000;
       color: white;
-      left: 70px;
-      top: 150px;
+      left: 80px;
+      top: 160px;
     }
 
     #noBtn {
       background-color: #d00000;
       color: white;
-      left: 180px;
-      top: 150px;
+      left: 200px;
+      top: 160px;
     }
 
     .laugh, .angry {
@@ -63,6 +65,7 @@
       font-size: 40px;
       pointer-events: none;
       animation: popFade 0.8s ease forwards;
+      z-index: 100;
     }
 
     @keyframes popFade {
@@ -75,8 +78,9 @@
       display: none;
       margin-top: 10px;
       font-size: 14px;
+      line-height: 1.5;
       text-align: left;
-      max-height: 200px;
+      max-height: 300px;
       overflow-y: auto;
     }
   </style>
@@ -90,7 +94,38 @@
     <button id="noBtn">No</button>
 
     <div id="contract">
-      <strong>You have just signed a formal contract ❤️</strong>
+      <strong>You have just signed a formal contract</strong> that binds both of our souls to spend the rest of our lives together.
+      <br><br><strong>This includes:</strong>
+      <ul>
+        <li>Loving each other unconditionally.</li>
+        <li>Making sure we push each other to be better.</li>
+        <li>Unlimited hugs (does not matter if we are outside).</li>
+        <li>Unlimited kisses (does not matter if we are outside).</li>
+        <li>Unlimited spooning (outside rules pending).</li>
+        <li>Choosing each other through fights and quarrels.</li>
+        <li>No sleeping without fixing issues that need to be fixed.</li>
+        <li>You need to let me feed you whenever I want to.</li>
+        <li>If the blanket is on, the fan must be on.</li>
+        <li>Unlimited cuddling.</li>
+        <li>You have to let me make you shy in front of people a few times a month.</li>
+        <li>No teasing me with your tongue.</li>
+        <li>A **shit ton** of hand holding.</li>
+        <li>A **shit ton** of taking pictures together.</li>
+        <li>Documenting almost all of our time together.</li>
+        <li>Valuing the small things as much as possible.</li>
+        <li>Living life to the fullest with each other.</li>
+        <li>A healthy amount of destruction (details discussed earlier).</li>
+        <li>You must include me in your getting-ready process.</li>
+        <li>I will give you back rubs and foot massages after work.</li>
+        <li>I promise to put you to sleep first (time zones permitting).</li>
+        <li>Travel a lot and experience what God created for us.</li>
+        <li>Pray so that you, me, and our family grow closer to God.</li>
+        <li>Escape the rat race together and free up time for each other.</li>
+      </ul>
+
+      <div style="margin-top:15px; font-weight:bold;">
+        I love you babymmaaa ❤️
+      </div>
     </div>
   </div>
 
@@ -128,6 +163,8 @@
       showEmoji("angry", e.clientX - 20, e.clientY - 20);
       noTries++;
       moveButton(noBtn);
+      document.body.style.background =
+        `linear-gradient(135deg, rgb(255, ${150 - noTries * 6}, ${150 - noTries * 6}), #6a040f)`;
     });
 
     // YES hover (moves twice)
@@ -139,24 +176,27 @@
       }
     });
 
-    // YES click (grow)
+    // YES click (grow + reveal)
     yesBtn.addEventListener("click", () => {
       yesGrowCount++;
-      const scale = 1 + yesGrowCount * 0.8;
+      const scale = 1 + yesGrowCount * 0.9;
       yesBtn.style.transform = `scale(${scale})`;
 
       if (scale >= 3) {
-        yesBtn.style.transform =
-          "translate(-50%, -50%) scale(20)";
         yesBtn.style.left = "50%";
         yesBtn.style.top = "50%";
+        yesBtn.style.transform =
+          "translate(-50%, -50%) scale(20)";
+        yesBtn.style.zIndex = "10";
 
         setTimeout(() => {
           question.innerText = "Will you marry me? 💍❤️";
           yesBtn.style.display = "none";
           noBtn.style.display = "none";
+          document.body.style.background =
+            "linear-gradient(135deg, #ff758f, #ff7eb3)";
           contract.style.display = "block";
-        }, 500);
+        }, 600);
       }
     });
   </script>

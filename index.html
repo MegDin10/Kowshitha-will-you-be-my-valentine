@@ -181,5 +181,23 @@
       }
     });
   </script>
+  <script>
+  // Mobile touch support
+  noBtn.addEventListener('touchstart', e => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    showEmoji('angry', touch.clientX - 20, touch.clientY - 20);
+    noTries++;
+    moveButton(noBtn);
+    document.body.style.background =
+      `linear-gradient(135deg, rgb(255, ${150 - noTries * 5}, ${150 - noTries * 5}), #6a040f)`;
+  });
+
+  yesBtn.addEventListener('touchstart', e => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    showEmoji('laugh', touch.clientX - 20, touch.clientY - 20);
+  });
+</script>
 </body>
 </html>

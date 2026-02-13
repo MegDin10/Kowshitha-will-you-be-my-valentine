@@ -91,4 +91,72 @@
     <button id="noBtn">No</button>
 
     <div id="contract">
-      <strong>You have just signed a
+      <strong>You have just signed a formal contract</strong> that binds both of our souls to spend the rest of our lives together.
+      <br><br><strong>This includes:</strong>
+      <ul>
+        <li>Loving each other unconditionally.</li>
+        <li>Pushing each other to be better.</li>
+        <li>Unlimited hugs.</li>
+        <li>Unlimited kisses.</li>
+        <li>Unlimited spooning.</li>
+        <li>Choosing each other through fights and quarrels.</li>
+        <li>No sleeping without fixing issues.</li>
+        <li>Letting me feed you whenever I want.</li>
+        <li>Fan on if the blanket is on.</li>
+        <li>Unlimited cuddling.</li>
+        <li>Letting me make you shy in public.</li>
+        <li>No teasing me with your tongue.</li>
+        <li>A ridiculous amount of hand-holding.</li>
+        <li>A ridiculous amount of pictures.</li>
+        <li>Documenting almost all our time together.</li>
+        <li>Valuing the small things.</li>
+        <li>Living life fully together.</li>
+        <li>Including me in your getting-ready routine.</li>
+        <li>Back rubs & foot massages after work.</li>
+        <li>I put you to sleep first.</li>
+        <li>Travel a lot.</li>
+        <li>Praying together.</li>
+        <li>Escaping the rat race together.</li>
+      </ul>
+      <div style="margin-top:15px; font-weight:bold;">
+        I love you babymmaaa ❤️
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const question = document.getElementById("question");
+    const card = document.querySelector(".card");
+    const contract = document.getElementById("contract");
+
+    const isTouchDevice =
+      "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+    let yesMoveCount = 0;
+    let yesGrowCount = 0;
+    let noTries = 0;
+
+    function showEmoji(type, x, y) {
+      const emoji = document.createElement("div");
+      emoji.className = type;
+      emoji.textContent = type === "laugh" ? "😂" : "😡";
+      emoji.style.left = x + "px";
+      emoji.style.top = y + "px";
+      document.body.appendChild(emoji);
+      setTimeout(() => emoji.remove(), 800);
+    }
+
+    function moveButton(btn) {
+      const rect = card.getBoundingClientRect();
+      btn.style.position = "absolute";
+      btn.style.left =
+        Math.random() * (rect.width - btn.offsetWidth) + "px";
+      btn.style.top =
+        Math.random() * (rect.height - btn.offsetHeight) + "px";
+    }
+
+    function growYesButton() {
+      yesGrowCount++;
+      const scale = 1 + yesGrowCount * 1.5;

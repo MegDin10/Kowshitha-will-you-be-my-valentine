@@ -4,9 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Will You Be My Valentine?</title>
+
   <style>
     body {
       height: 100vh;
+      margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -23,6 +25,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.15);
       text-align: center;
       position: relative;
+      max-width: 90vw;
     }
 
     h1 {
@@ -38,6 +41,7 @@
       border-radius: 25px;
       cursor: pointer;
       transition: transform 0.3s ease;
+      touch-action: manipulation;
     }
 
     #yesBtn {
@@ -57,6 +61,7 @@
       font-size: 40px;
       pointer-events: none;
       animation: popFade 0.8s ease forwards;
+      z-index: 100;
     }
 
     @keyframes popFade {
@@ -77,127 +82,13 @@
     }
   </style>
 </head>
+
 <body>
   <div class="card">
     <h1 id="question">Will you be my Valentine? 💖</h1>
+
     <button id="yesBtn">Yes</button>
     <button id="noBtn">No</button>
 
     <div id="contract">
-      <strong>You have just signed a formal contract</strong> that binds both of our souls to spend the rest of our lives together.
-      <br><br><strong>This includes:</strong>
-      <ul>
-        <li>Loving each other unconditionally.</li>
-        <li>Pushing each other to be better.</li>
-        <li>Unlimited hugs (yes, even outside).</li>
-        <li>Unlimited kisses (yes, even outside).</li>
-        <li>Unlimited spooning (outside rules pending).</li>
-        <li>Choosing each other through fights and quarrels.</li>
-        <li>No sleeping without fixing what needs to be fixed.</li>
-        <li>Letting me feed you whenever I want.</li>
-        <li>Fan on if the blanket is on.</li>
-        <li>Unlimited cuddling.</li>
-        <li>Letting me make you shy in front of people a few times a month.</li>
-        <li>No teasing me with your tongue.</li>
-        <li>A ridiculous amount of hand-holding.</li>
-        <li>A ridiculous amount of pictures together.</li>
-        <li>Documenting almost all of our time together.</li>
-        <li>Valuing the small things as much as possible.</li>
-        <li>Living life to the fullest together.</li>
-        <li>A healthy amount of destruction (details previously discussed).</li>
-        <li>Including me in your getting-ready process.</li>
-        <li>Back rubs and foot massages after work (from me).</li>
-        <li>I put you to sleep first (time zones permitting).</li>
-        <li>Travel a lot and experience what God created for us.</li>
-        <li>Pray so that you, me, and our family grow closer to God.</li>
-        <li>Escape the rat race together to gain more time for us.</li>
-      </ul>
-      <div style="margin-top:15px; font-weight:bold;">I love you babymmaaa ❤️</div>
-    </div>
-  </div>
-
-  <script>
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
-    const question = document.getElementById("question");
-    const card = document.querySelector('.card');
-    const contract = document.getElementById("contract");
-
-    let yesMoveCount = 0;
-    let yesGrowCount = 0;
-    let noTries = 0;
-
-    function showEmoji(type, x, y) {
-      const emoji = document.createElement("div");
-      emoji.className = type;
-      emoji.innerText = type === 'laugh' ? '😂' : '😡';
-      emoji.style.left = x + 'px';
-      emoji.style.top = y + 'px';
-      document.body.appendChild(emoji);
-      setTimeout(() => emoji.remove(), 800);
-    }
-
-    function moveButton(btn) {
-      const rect = card.getBoundingClientRect();
-      btn.style.position = 'absolute';
-      btn.style.left = Math.random() * (rect.width - btn.offsetWidth) + 'px';
-      btn.style.top = Math.random() * (rect.height - btn.offsetHeight) + 'px';
-    }
-
-    noBtn.addEventListener('mouseenter', e => {
-      showEmoji('angry', e.clientX - 20, e.clientY - 20);
-      noTries++;
-      moveButton(noBtn);
-      document.body.style.background = `linear-gradient(135deg, rgb(255, ${150 - noTries * 5}, ${150 - noTries * 5}), #6a040f)`;
-    });
-
-    yesBtn.addEventListener('mouseenter', e => {
-      showEmoji('laugh', e.clientX - 20, e.clientY - 20);
-      if (yesMoveCount < 2) {
-        yesMoveCount++;
-        moveButton(yesBtn);
-      }
-    });
-
-    yesBtn.addEventListener('mousedown', () => {
-      yesGrowCount++;
-      const scale = 1 + yesGrowCount * 1.2;
-      yesBtn.style.transform = `scale(${scale})`;
-
-      if (scale >= 3) {
-        yesBtn.style.position = 'absolute';
-        yesBtn.style.left = '50%';
-        yesBtn.style.top = '50%';
-        yesBtn.style.transform = 'translate(-50%, -50%) scale(20)';
-        yesBtn.style.zIndex = '10';
-
-        setTimeout(() => {
-          question.innerText = 'Will you marry me? 💍❤️';
-          yesBtn.style.display = 'none';
-          noBtn.style.display = 'none';
-          document.body.style.background = 'linear-gradient(135deg, #ff758f, #ff7eb3)';
-          contract.style.display = 'block';
-        }, 600);
-      }
-    });
-  </script>
-  <script>
-  // Mobile touch support
-  noBtn.addEventListener('touchstart', e => {
-    e.preventDefault();
-    const touch = e.touches[0];
-    showEmoji('angry', touch.clientX - 20, touch.clientY - 20);
-    noTries++;
-    moveButton(noBtn);
-    document.body.style.background =
-      `linear-gradient(135deg, rgb(255, ${150 - noTries * 5}, ${150 - noTries * 5}), #6a040f)`;
-  });
-
-  yesBtn.addEventListener('touchstart', e => {
-    e.preventDefault();
-    const touch = e.touches[0];
-    showEmoji('laugh', touch.clientX - 20, touch.clientY - 20);
-  });
-</script>
-</body>
-</html>
+      <strong>You have just signed a

@@ -160,3 +160,59 @@
     function growYesButton() {
       yesGrowCount++;
       const scale = 1 + yesGrowCount * 1.5;
+      yesBtn.style.transform = `scale(${scale})`;
+
+      if (scale >= 3) {
+        yesBtn.style.position = "absolute";
+        yesBtn.style.left = "50%";
+        yesBtn.style.top = "50%";
+        yesBtn.style.transform =
+          "translate(-50%, -50%) scale(20)";
+        yesBtn.style.zIndex = "10";
+
+        setTimeout(() => {
+          question.textContent = "Will you marry me? 💍❤️";
+          yesBtn.style.display = "none";
+          noBtn.style.display = "none";
+          document.body.style.background =
+            "linear-gradient(135deg, #ff758f, #ff7eb3)";
+          contract.style.display = "block";
+        }, 600);
+      }
+    }
+
+    /* NO button (desktop only) */
+    if (!isTouchDevice) {
+      noBtn.addEventListener("mouseenter", e => {
+        showEmoji("angry", e.clientX - 20, e.clientY - 20);
+        noTries++;
+        moveButton(noBtn);
+        document.body.style.background =
+          `linear-gradient(135deg, rgb(255, ${150 - noTries * 6}, ${150 - noTries * 6}), #6a040f)`;
+      });
+    }
+
+    /* YES behavior */
+    if (!isTouchDevice) {
+      // Desktop
+      yesBtn.addEventListener("mouseenter", e => {
+        showEmoji("laugh", e.clientX - 20, e.clientY - 20);
+        if (yesMoveCount < 2) {
+          yesMoveCount++;
+          moveButton(yesBtn);
+        }
+      });
+
+      yesBtn.addEventListener("click", growYesButton);
+    } else {
+      // Mobile
+      yesBtn.addEventListener("touchstart", e => {
+        e.preventDefault();
+        const t = e.touches[0];
+        showEmoji("laugh", t.clientX - 20, t.clientY - 20);
+        growYesButton();
+      });
+    }
+  </script>
+</body>
+</html>
